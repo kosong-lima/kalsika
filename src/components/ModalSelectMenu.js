@@ -12,7 +12,7 @@ export default function ModalSelectMenu() {
             <Button onPress={onOpen} className="font-semibold bg-black" color="primary" size="lg">
                 Kalkulator
             </Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+            <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
                 <ModalContent>
                     {(onClose) => (
                         <>

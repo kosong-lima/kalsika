@@ -9,11 +9,11 @@ export default function navbar() {
             </div>
             <div className="flex items-center justify-around w-full max-w-xl font-semibold">
                 <MenuHeader href="/home">Home</MenuHeader>
-                <MenuHeader>Kalkulator</MenuHeader>
-                <MenuHeader>Support</MenuHeader>
+                <MenuHeader href="/home#">Kalkulator</MenuHeader>
+                <MenuHeader href="/home#">Supports</MenuHeader>
             </div>
             <div className="flex items-center min-h-full cursor-pointer">
-                <p className="font-bold">Quizz</p>
+                <p className="font-bol">Quizz</p>
             </div>
         </header>
     )
