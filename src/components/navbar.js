@@ -13,7 +13,7 @@ export default function navbar() {
                 <MenuHeader href="/home#">Supports</MenuHeader>
             </div>
             <div className="flex items-center min-h-full cursor-pointer">
-                <p className="font-bol">Quizz</p>
+                <p className="font-bold">Quizz</p>
             </div>
         </header>
     )

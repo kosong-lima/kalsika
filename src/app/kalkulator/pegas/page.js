@@ -1,32 +1,19 @@
 "use client"
 
-import LinkNextPage from "@/components/LinkNextPage"
 import Navbar from "@/components/Navbar"
 import { Button, Input } from "@nextui-org/react"
 import Link from "next/link"
 import React, { useState } from "react"
 
 export default function Page() {
-    const [gaya, setGaya] = useState(null)
-    const [sudut, setSudut] = useState(null)
+    const [konstanta, setKonstanta] = useState(null)
+    const [panjang, setPanjang] = useState(null)
     const [hasil, setHasil] = useState(null)
 
-    const handleInputChange = (e) => {
-        let value = parseFloat(e.target.value)
-
-        // Batasi nilai antara 0 dan 360
-        if (value > 360) value = 360
-        if (value < 0) value = 0
-
-        setSudut(value)
-    }
-
-    const hitungVektor = () => {
-        if (gaya !== null && sudut !== null) {
-            const radian = (Math.PI / 180) * sudut
-            const x = gaya * Math.cos(radian)
-            const y = gaya * Math.sin(radian)
-            setHasil({ x: x.toFixed(2), y: y.toFixed(2) })
+    const hitungGesek = () => {
+        if (konstanta !== null && panjang !== null) {
+            const gaya = konstanta * panjang
+            setHasil(gaya.toFixed(2))
         }
     }
     return (
@@ -34,29 +21,30 @@ export default function Page() {
             <Navbar />
             <div className="flex flex-col items-center w-full justify-center min-h-[85dvh] p-10 gap-y-5 max-w-5xl">
                 <div className="flex w-full gap-x-5">
-                    <div className="flex w-full py-5 pl-8 text-xl font-bold bg-gray-200 rounded-xl">Simpel Vektor</div>
-                    <LinkNextPage href={"/kalkulator/newton-1"} children={"Hukum Newton 1"} />
+                    <div className="flex w-full py-5 pl-8 text-xl font-bold bg-gray-200 rounded-xl">Gaya Pegas</div>
+                    <div className="flex items-center justify-center w-56 px-5 italic bg-gray-200 rounded-xl">
+                        <Link href="/kalkulator/gesek">Gaya Gesek &gt;</Link>
+                    </div>
                 </div>
                 <div className="flex w-full gap-x-5">
                     <div className="flex flex-col w-2/3 px-8 py-5 text-lg font-semibold bg-gray-200 gap-y-8 rounded-xl">
                         <p>Isi Sendiri Ya Ndes!!</p>
                         <div className="flex flex-col max-w-lg gap-y-5">
                             <Input
-                                label="F (Gaya)"
+                                label="k (Konstanta Pegas)"
                                 type="number"
-                                onChange={(e) => setGaya(parseFloat(e.target.value))}
-                                endContent={<p className="text-sm text-gray-400">N</p>}
+                                onChange={(e) => setKonstanta(parseFloat(e.target.value))}
+                                endContent={<p className="text-sm text-gray-400">N/m</p>}
                             />
                             <Input
-                                value={sudut}
-                                onChange={handleInputChange}
-                                label="&#952; (Sudut)"
+                                label="∆x (Perubahan Panjang)"
                                 type="number"
-                                endContent={<p className="text-sm text-gray-400">&deg;</p>}
+                                onChange={(e) => setPanjang(parseFloat(e.target.value))}
+                                endContent={<p className="text-sm text-gray-400">m</p>}
                             />
                         </div>
                         <div className="flex justify-end">
-                            <Button color="primary" className="bg-black" onClick={hitungVektor}>
+                            <Button color="primary" className="bg-black" onClick={hitungGesek}>
                                 <p className="font-bold">Wess</p>
                             </Button>
                         </div>
@@ -65,10 +53,7 @@ export default function Page() {
                         {hasil ? (
                             <>
                                 <p className="text-base font-bold md:text-2xl lg:text-5xl">
-                                    {hasil ? `x: ${hasil.x} N` : ""}
-                                </p>
-                                <p className="text-base font-bold md:text-2xl lg:text-5xl">
-                                    {hasil ? `y: ${hasil.y} N` : ""}
+                                    {hasil ? `F = ${hasil} N` : ""}
                                 </p>
                             </>
                         ) : (
