@@ -2,6 +2,7 @@ import React from "react"
 import Navbar from "@/components/Navbar"
 import { Button } from "@nextui-org/react"
 import ModalSelectMenu from "@/components/ModalSelectMenu"
+import Link from "next/link"
 
 export default function Page() {
     return (
@@ -11,13 +12,18 @@ export default function Page() {
             </div>
             <div className="flex flex-col min-h-[91dvh] justify-between">
                 <div className="flex flex-col items-center justify-center mt-48 gap-y-4 md:gap-y-7 lg:gap-y-10">
-                    <p className="text-2xl font-bold md:text-3xl lg:text-6xl">Welcome, Everyone🥳</p>
+                    <p className="text-2xl font-bold md:text-3xl lg:text-6xl">
+                        Welcome, Everyone🥳
+                    </p>
                     <p className="text-sm md:text-base lg:text-xl">
-                        Kalkulator fisika sederhana yang dapat memudahkan dalam kalkulasi simpel dengan cepat
+                        Kalkulator fisika sederhana yang dapat memudahkan dalam
+                        kalkulasi simpel dengan cepat
                     </p>
                     <div className="flex gap-x-8">
                         <ModalSelectMenu />
                         <Button
+                            href="/support"
+                            as={Link}
                             className="font-semibold bg-white border border-black hover:bg-gray-200"
                             color="success"
                             size="lg"
